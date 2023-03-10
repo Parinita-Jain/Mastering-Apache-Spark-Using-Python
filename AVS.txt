@@ -1,0 +1,762 @@
+Big Data---
+we are generating 25,000,000,000,000,000,000 bytes/day.
+
+The big data satisfies 5 v's--
+volume,variety,velocity,veracity,value
+
+volume refers to the scale of data we generate.
+variety--structured,semi-structured,unstructured
+velocity--pace at which data is generated.
+veracity--reliability ofdata.removing outliers,bias ,duplication,etc
+value--the data should generate value for company.
+
+Challlenges with big data-
+dealing with high velocity of incoming data.
+integrating data frommultiple sources.
+managing big data quality
+dealing with duplication of data
+etc
+
+Some big data toolsare--
+kafka,hadoop,hive,apache spark,etc
+
+Applications of big data--
+banking,online shopping,streaming services,recommendation systems,etc
+
+Distributed systems--
+Drawbacks of traditional systems are--
+limited scaling,higher risk of downtime,expensive maintenance
+
+In distributed systems,there are a group of nodes or computers working together,so as toappear as a single comp to  the end user.
+Their features are--
+replicaation,higher sclability,higher concurrency,fault tolerance
+
+
+Now, distributed systems donot work on their own.They need a framework that is capable of storing data in adistributed manner on the cluster,
+perform computations of data lly on thes nodes, and manage the overall distributed sysytem.--thi is apache hadoop.
+
+Apache hadoop--It is an open source framework for storing and procesing data in parallel and running apps in a distributed manner.
+Its other featres are replication,higher scalability,igher concurrency,fault tolerance, also itisopensource.It can handle structured,semi structured
+and unstructured data with no costraints on formats and it comes with the ecosystemofcomponents that are built on top of it and leverages its capabilities.
+
+Haddop's components--
+HDFS--this is a distributed file system that handles large datasets running on commodity h/w.
+Thi is the primary storage system of hadoop.
+On top ofit--YARN--itis the resource mgmt and job scheduling service.Yet Another Resource Negotiator.
+MapReduce is a programming model for writing applicaions that can process big data in parallel on multiple nods.
+Hadoop Common referstothe collection ofcommon utitlities and libraries that support other hadoop modules.
+
+HDFS
+eg we have data --
+deer,bear , river
+car,car,river
+deer,car,bear
+
+This data is storedin 3 diff systems--
+1.deer,bear,river 2. car,car,river 3.deer,car,bear
+then comes yarn--we have a user who wants to process the below file.
+2.Yarn contact with differ nodes to check if they are free to execute the file.
+3. map reduce--
+i/p-->splitting--->mapping-->shuffling-->reducing--->final result
+
+Hadoop ecosystem--
+https://www.analyticsvidhya.com/blog/2020/09/different-nosql-databases-every-data-scientist-must-know/
+
+https://www.analyticsvidhya.com/blog/2020/10/sql-vs-nosql-databases-a-key-concept-every-data-engineer-should-know/
+
+https://www.analyticsvidhya.com/blog/2020/10/what-is-the-difference-between-data-lake-and-data-warehouse/
+
+HDFS--hadoop distributed file system-- storage layer for haddop. Distributed storage. Highly scalable. Run on commodity hw
+Map-reduce-main processing engine of hadoop.Consists of 2 parts--mapand reduc tasks. fault tolerant,parallel computation.
+Apache HBASE--nosql db,stores data in HDFS,random read/write,real-timeread/write
+Apache pig--abstraction over map-reduce.Analyze large data,uses pig latin.So whatever code u write inpig latin is converted 
+into mapreduce task by pig.
+Hive--Distributed data warehoue system.Supports hive query lang,executes queries usingmap-reduce,used for analytical jobs.
+Data warehouse--
+consider an organization where we have multiple data sources like customer relationship mgmt(CRM),
+Entrprise resource plannning(ERP),Supply chain mgmt(SCM)--So the data is getting collected fromvrious hetrogeneous sources.
+which have diff formats and hence this data is pretty inconsistent.Soitgoes through multiple pre processing steps and formatting
+is done and finally itis stored in data warehouse.NOw,this high quality data is ready to be analyzed without having to worry
+about inconsistencies and is ready for decision making like-visualization,reportig,business intelligence, etc.
+
+pache zookeeper--Manages cluster,it maintains hadooop as a single unit and is responsble for synchronizationof hadoop tasks.It aslo serves as
+the naming service and identifies nodes inthe cluster by name. It is a distributed coordination service.It
+provides a centralized service for various kinds of info in distributed systems like configuration,information,etc
+D/B yarn and zookeeper is--yarn is simply a resource mgmt and resource scheduling tool. Where as zookeepr acts as a job scheduling agent on clusterlevel basis.
+It is used by YARN as well to manage its resource allocation properties.
+Kafka--distributed data store that is highly optimized for ingesting and processing streaming data in real time.It provides streaming data to various appls as well.
+It is mostly used formonitoring the operational data.
+
+Flume--Thisis adistributed and reliable system for efficiently collecting,aggregating and movinglarge amounts of log data frommany diff sources to a centralized data store.
+It can collect data frommultiple data sources.It is robust and fault tolerant and can collect in real tme as well asin batch mode.It can move huge amounts ofdata
+into HDFS.
+D/B Kafka and Flume-
+parametr-- push/pull model
+kafka works as pullmodel.If data comes at a very high ate and user is unable tohandle it,
+then kafka stores the data fora while which can be used later.. Flume works as push model.
+In flumewhen user gets overwhelmed with data,itdoesnot store data with itself.User just lose the data.
+Then we have recovery.
+parametr-- recovery
+Kafka highly availbale and resilient to node failures.Flume --in case of flume agent failure,u will lose events in the channel.
+parametr-- flexibility
+kafka is general purpose publish-subscribe model messaging system. Flume is specially designed for hadooop.
+
+Sqoop--Tool designed to transfer data between hadoop and relationaldatabses. We can use this toimport data
+from RDBMS intoHDFS.It transforms thedata in hadoopmap reduce and then storesthe data back into RDBMS.
+
+So,
+fordata ingestion -- we have,kafka,sqoop,flume. These ingest data from data sources into hadoop storage.
+for data storage--hbase and hdfs.
+data processing--apache spark,hadoop map reduce--
+data exploration-- hive or pig latin.
+
+
+Hadoop charateristics are--
+reliable,flexible,scalable,economical
+
+Apache Spark--
+It is a parallel data processing engine for big data and ml applications designed to run on a cluster of computers.
+Its an alternative to hadoop map reduce.
+
+Features of apache spark--
+polyglot,flexibility,unified engine,in-memory computation,real-time processing
+
+Polyglot--u can code in ur favorite lang like java,python,r,spark,scala,etc
+Flexibility
+unified engine--comes with high level libraries
+in-memory computation--it does not write results to the disk therby reducing the io overhed.
+and this makes it 100 times faser thanmap reduce.Tf it requiresmuch moreramthen hadoop cluster.
+Real-timestreaming--hadoop is made to handlebatch datai.e. the data accumulated over a period of time.
+now, for caseslike credit card frauds, we have toanalyz data in real time which hadoop cannothandle.
+while spark can process both batch data and real timedata.
+eg uber,netflix,facebook.
+
+Spark ecosystem--
+It consists of spark core API, sparkSQL.spark streaming,MLIB,GraphX(for graph computation)
+
+Spark coreAPI--It is responsible for managing basic funcionalities of spark.Like--
+Memory mgmt,scheduling and manging jobs and task dispatching.
+Spark SQL library deals with structured and semi structured data processing.
+Run SQL queries in big data.Compatible wih HIve.
+Spark streaming-process batch and real-timedata.It can ingest data frommultiplesources like flume and kafka.
+MLib--Scalable ML providesre ,class,clustering and collaborative filtering and can also build ml pipelines.
+GraphX--manipulates graph and provides graph || computation with the help of graph algos and builders.
+The downside off this is-- its only available when using scala prog lang.
+
+
+Deepdive into spark--
+Its architecture mainly consists of 3 components--
+cluster manager,driver and worker(executor)
+
+driver prog--drives progdrives a spark application.
+The code that we submit to spark is run by the driver prog orifwe are using the spark cli, wic is also known as the spark shell,
+will act as a driverr prog.
+So,driver prog consists of spark code,spark shell,spark context.As part of the driveer prog,the 1st
+step is to create a spark context.
+A spark context is the entry point of an appl tothe cluster and we need to define it explicitly if we r submitting
+a spark code file writtenin any lang like python,scala or java tothat cluster.
+
+D/B spark code and spark shell--
+spark code run as independent progs. eg- python,scala,or java code and jobs such as etl processing,streaming
+spark shell-allows interactive exploration and manipulation of data.eg REPL(read,evaluate,print,loop in spark) using python or scala.
+
+Based on the steps above,DAG is builtwhich is below spark context. Once DAG is builtthen the spark driver is responsible for converting user 
+prog into tasks.
+
+After this the clster manager comes into picture.eg ofcluster manger can be yarn.
+
+So,the driver prog wants torun sometasks and ask forhelp fromcluster manager.
+The cluster prog looks for the availbel resources in the cluster and then launch the required no.of resoures needed.
+These resources are known as executors that run within worker nodes.And the worker  nodesare any nodes in the cluster that can run the app.
+
+So,the spark lifecycleislike--
+The cluster manager launches the resoures to execute the prrog for eg executors.Thedriver sends the task to the executors and once the executors receive the task,
+they acknowledge the driver prog so that the driver prog can monitor the execution of thejob.
+Once the executors finish the execution,they return the result of the driverprog .
+
+Spark Cluster Managers--
+How to run spark appl--
+they can run locally,or on a cluster.
+Locally it will need multiple threads.
+localmode is useful for development and testing.Clustermode for production and live apps.
+
+Supported cluster resource managers-
+Spark standalone,Hadoop yarn,apache mesos
+
+running spark apps on YARN--
+2 deployment modes are used tolaunch spark apps on YARN.
+Client mode and cluster mode.
+
+The behaviour of a spark job depends on the driver component.In client mode, the driver componnetn
+of the spark job run on the m/c  fromwhich the job is submittted.
+Hence this mode is called as a client mode.eg of when touse this mode-- when client is near sparkinfrasturcture or when n/w latency is low.
+
+Cluster mode-- the spark job launch the driver component inside the cluster.used when client is at a remote location.,it reduce chances of job failure.
+
+spark-submit is a utility tosubmit spark progs.
+# run on yarn client---
+./bin/spark-submit\
+--class org.apache.spark.examples.SparkPi\
+--master yarn\
+--deploy-mode client  
+
+./bin/spark-submit\
+--class org.apache.spark.examples.SparkPi\
+--master yarn\
+--deploy-mode cluster
+
+D/B cluster mode and clent mode--
+less n/w latency vs higher
+not well suited for using spark interactively vs itis.
+the drive can disconnect after submitting job vs client needs to stay connected
+driver and workers run on the same infrastructure vs maynot run on the same infrasturcture.
+
+running spark app locally--
+spark-submit --master local[*]-- local[*] to run app loclly with as many threads as thecores.
+local[n]--loclly with n threads
+local--with single thread
+
+Spark context and spark session--
+Spark context is the entry point to any spark functionality.
+It is initiated inside driver prog. Driver prog then runs the operations
+inside the executors on worker nodes.
+It is responsible for--
+submitting jobs,asking for resources,scheduling tasks,sending tasks,get job results.
+The 1st thing a spark prog does is to create a SparkContext object which tells spark
+how to access a cluster.
+To create a SpakContext u first need tobuild a SprkConf object that contains info about ur app.
+
+which can be donelike--
+conf=SparkConf().setAppName(appName).setMaster(master)
+sc=SparkContext(conf=conf)
+
+SparkSessin provides singlepointofentry to interact with theunderlying Spark functionality.
+All the functionality availbale with sparkcnext isalso avilablae with spark session
+
+
+Itversity--
+1. hdfs dfs -ls : Lists all the files in HDFS.
+2. hdfs dfs -ls <hdfs_directory> : List all files within a specific HDFS directory.
+3. hdfs dfs -mkdir <directory_name> : Creates a new directory in HDFS with the given
+name.
+4. hdfs dfs -put <local_destination> <hdfs_destination> : To copy a file from local to a
+specific HDFS directory.
+5. hdfs dfs -get <hdfs_destination> <local_destination> : To copy from an HDFS
+directory to local filesystem.
+6. hdfs dfs -cat <file_path> : To view contents of a file on HDFS.
+7. hdfs dfs -mv <hdfs_source_path> <hdfs_destination_path> : To move a file from a
+HDFS source directory to a HDFS destination directory.
+8. hdfs dfs -touchz <file_path> : To create an empty file within an HDFS directory.
+9. hdfs dfs -cp <hdfs_source_path> <hdfs_destination_path> : To copy a file from one
+HDFS directory to another.
+10. hdfs dfs -rmr <directory_path> : To remove a file or directory from HDFS.
+
+$unzip train_big_mart.zip
+$hdfs dfs -ls
+$hdfs dfs -mkdir demo_dir
+#uplading unzip file to demo_dir--
+$hdfs dfs -put <paste path of file> demo_dir/
+$hdfs dfs -ls demo_dir/
+
+RDDs---
+Rdds are tospark what dataframes are to Pandas.
+Resilient Distributed Dataset is the spark's main abstracion and has foll features--
+i.e. any data that u read using spark is first converted into RDDS.Its features--
+it is distributed, immutable and resilient.
+
+distributed--an rdd can be stored in multiple nodes and allows it to be processed parallely.
+The single file is divided into multiple partitions.These parttions can be stored on a single node
+or on seperate nodes.
+We can also manually define how many partitionswe need.
+
+immutable--once an rdd is created,it cannot be modified further.It can only be used to create new rdd.
+
+transformations--the process of creating a new rdd froman old one,after applying any op is known astransformation.
+
+resilient--
+rdd0------------------>rdd1------------>rdd2
+partition 1 [1,4,7]    [1,16,49]        -------for some reason like node failure o/p not computed---so,the parttion will recompute on another node
+partition 2 [2,3,3]    [4,9,9]          [12,27,27]---meanwhile,this partition willcontinue their work for the next op .
+
+Now, all the rdds are connected to their parrent rdd.
+So, to recompute parttiion1, spark will call its parent rdd for the info of the next op to perform,i.e rdd1--once
+the info is received,it will start working again and execute the ops.
+ 
+How to create RDDS?----2 ways--
+1 by parallelizing collections,2 by external dataset.
+
+
+https://spark.apache.org/docs/latest/rdd-programming-guide.html#external-datasets
+
+How tocreate RDDs---
+
+creating RDDs.ipynb----------------------
+which partition contains which data by glom-- 
+
+!pip install pyspark
+#creating rdd using parallelize func
+rdd_list=sc.parallelize(my_list)
+rdd_list.getNumPartitions()
+rdd_list.glom().collect()
+rdd_movies=sc.textFile("movies.csv",minPartitions=5)
+
+RDD operations----
+2 main types are-- transformations--these are the funcs that create new RDDs fromold RDDs
+Thus this results in a new RDD.
+But transformations dondot execute or put any values on these rdds. So for that we need another op.
+Actions--these are the funcs taht compute result from an RDD.
+So,when an action is performed on an RDD , no new RDD is formed.Insted all the transformation ops
+are executed and the o/p is the returned tothe driver prog,
+bcoz ur RDD ops are being executed on the worker nodes.
+
+Spark lazy evaluaion--It is an evaluation strategy which delays the execution of rdds until an action is called.
+
+Some commonly used transformations are map(upper case)--gives list of list,
+flatmap()--it flattensout the result and gives list of elements.
+rdd.filter()---for filtering
+
+Actions-- rdd.collect()--it simply returns our o/p or the elements from the rdd.
+take(2)--returns only selected no.of data chunk
+count()--
+
+6.5 RDD Operations.ipynb------ 
+
+PairRDDs---
+These are another kind of RDDs tat store data in a key-cvalue style.Similar todictionaries in python.
+It allows toperform operation on each key in parallel. It can be used to aggregate elements within each key.
+It has its own special transformation and action funcs in addition to those for RDDs.
+eg groupByKey(),reduceByKey(),countByKey(),join() andmany more.
+
+eg 
+rdd						RDD					PairRDD
+we should learn hadoop|
+                      |--->flatMap(tokenize)-->[we,should,learn,hadoop....]------->(We,1)(should,1)(learn,1)(hadoop,1)(we,1)(sould,1)(learn,1)(spark,1)---->pairRDD operation---->(we,2)(should,2)(larn,2)(hadoop,1)(spark,1)
+we should learn spark |
+
+Pair rdd operations---
+groupByKey()
+
+PairRDD
+--lets say 2 partiotions are there
+-(A,10),A,16(,(B,20)
+-(A,15),(B,18),(B,20)
+-(A,16)
+1st the shuffling of data isdone tobring all the values pertaining to keyintosame partition --
+-(A,10),(A,16),(A,15),(A,16)
+-(B,20),(B,18),(B,20)
+
+--Now,ifwe collecct the values using the collect func which is an action,then it will retrn the valuesin an iterable form
+-(A,[10,16,15,16])
+-(B,[20,18,20])
+
+--Now,we can apply any op on this.Lets say Sum()--
+(A,57)
+(B,58)
+
+But it is not reccoomended to use groupByKey().Becuase it shuffles the complete data over the n/w.
+espec when the size of the data is big.
+
+So,in reduceByKey transformation--
+-(A,10),A,16(,(B,20)------Sum()---(A,26),(B,20)--|
+-(A,15),(B,18),(B,20)-----Sum()---(A,15),(B,38)--|-----shuffling of data---(A,26),(A,15),(A,16)--|---sum()--(A,57),(B,58)
+-(A,16)-------------------Sum9)---(A,16)---------|                         (B,20),(B,38)---------|
+
+So, the amount of data that needs to be shuffled is reduced.Finally after the shuffling,the sum() is applied again.
+toclc the result.
+
+Actions on PairRDD--countByKey() 
+('S',2)
+('P',4)-------rdd.countByKey()---(S,2),(P,1)
+('S',6)-------rdd.lookup(S)------[2,6]---i.e. value for S is returned
+and lookUp()
+
+pair rdd ops.ipynb----
+keys,values,groupby,reduce by,join
+
+appname:
+Sets a name for the application, which will be shown in the Spark web UI.
+If no application name is set, a randomly generated name will be used.
+
+
+group by key vs reduce by key.ipynb----
+
+Caching and Persistence in Spark---
+To improvethe performnce ofspark computations--
+2 ofthe many methods are-cache and persist.
+These methodshelpstosave intermedite results so that it can be reused in subsequent stages.
+
+eg--
+1step--read the data--"data is the new oil""data is everywhere"---next tokenice the sentences--->["data","is","the" ,"new", "oil","data" ,"is" ,"everywhere"]
+--->next convering these words into pair rdd-- (data,1),(is,1)...(everywhere,1)--->nowthat e have our pair rdds,we want to prform some ops on pair rdds. like--
+total words starting with "d"--We knowin spark,when action is called ,allthe transformations takes palce.
+so,it will execute all the transomations from reading data to creating pair rdds. Nowlets say we want word len>4---again transformations from reading topairrdd 
+generation will be done.Next lets say,we want all thewords starting with vowel--again everything is executed.
+
+So,to save resources and optimize spark application--we can use cache and persistence.
+it stores the result like pair rdd result in memory,then any op we want to apply beyond this point will reuse the stored result and will not 
+execute everything from the beginning.Thus reducing execution time.
+
+Thus,benefits of caching/Persisitence--saves the data by default in memory. Avoids recomputation ofthe whole lineage,improves performance.
+
+Te diff betw caching and persistence is--
+cache stores RDDs in memory only.When the data is cached,spark stores thepartitioned data in the memory of each nodeand reuses
+them in upcoming actions.syntax--rdd.cache()
+
+persisitence--it lets u store your rdd in ur desired storage level.This can be in memory only,in memory and disk,etc.By default it also storesin memory only.
+Tf it involves i/p o/p opsbetween memory and disk and hence is slower than cache.
+
+Storage levelsin Spark---
+Diff storage leves in which we can persist an rdd.
+Serialization in java allowsus to convert a java obj into a byte stream that can be stored in memory or
+sent over the n/w.this not only reduces the memory required for saving data but also improves the n/w performance.
+However toconsume this data again, we need  to deserialize this bytestream i.econvert it back tojava object.
+
+Serializable objects-https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html
+data Serialization in spark--https://docs.oracle.com/javase/tutorial/jndi/objects/serial.html
+
+Coming to storage levels-- 
+1.memory_only--allows storage of RDD as desirealized java objects.Recomputes any RDDs not fitted in memory.
+2. Memory_and_Disk--allows storage of RDD as desirealized objects . Also stores RDDs on disk.
+3.Memory_Only_SER--storesRDD as serialized java objects.Enables better space efficiency.
+4.Memory_And_Disk_SER--similar to Memory_Only_SER butspills partitions not fitted in memry to disk.
+5.Disk_Only--Stores the RDD partitions only on disk.
+6.Memory_Only_2 and Memory_And _Disk_2 --replicate every partition on 2 cluster nodes.
+7. Off_Heap--allows storage of RDD in serialized format in Tachyon.Reduces garbage collecion overhead and avoids losing in-memory cache.
+Tachyon is an open source ,memory -centricdistributed system,that enables reliable data sharing and memory speed across cluster jobs.
+This tachyon s/w runs onthe computation node of the cluster andallows for the fast writing of the spark data once it has been processed 
+in memory or the fast reading of HDFS data as it is being pulled into memory todo jobs.
+
+Features of RDD Prsisitence--
+It is Cost Efficient--saprk computations are very expensive hence reusing he computations areused to save cost.
+Time efficient--Reusing the repeated computations saves lots of time.
+Execution time-saves execution time of the job and we can perform more jobs on the same cluster.
+
+Storage levels in PySpark--in python,stored objects will always be serialized with the pickle library , so it does not matter 
+whether u choose a serialized level.
+Pickle-is a module for serializing and de-serializing apython object.
+
+Memory_only_SER and Memory_And_Disk_Only_SER--are only present in java and scala.
+
+Which storage level to choose?--sparks storage levels are meant to prvide diff trade-offs between memory usage and CPU eficiency.
+If ur RDDs fit comfortably with the default storage level,leave tehm that wayi.e.MEMORY_ONLY.
+If not,ty usin MEMORY_ONLY_SER and selecting a fast serialization library to make the objects much more space-efficient but still
+reasonably fst to access.
+Dont spill t disk unless the functions that computed ur datasets are expensive.
+Use the replicated storage levels.If u want fast fault recovery.
+
+Changing persistence options--
+to change persistence option on an RDD--unpersist the RDD.--RDD.Unpersist()
+to change RDD persistence to other storage level--unpersist the RDD and Then mark it for
+ persisitence with diff storage level.--RDD.persist(pyspark.StorageLevel.MEMORY_ONLY)
+
+Storage Levelsin Persistence.ipynb--
+
+DataFrames in Spark--
+RDD drawbacks--1. tough to handle semi-structured and structured data.
+eg dataCSV=sc.textFile("data/Sample.csv")
+dataCSV.collect()
+o/pis--["ID,NAME,SALARY","1,Alex,10000","2,Brit,15000"]--the diff records in the file hav been 
+read as a single string value.This is a drawback of RDD api.
+
+2.No in-built optiization--
+i.e.rdd.join().filter() or rdd.filter().join() ?
+Obviously,2nd is better.But spark API does not know this.So,it cannot dooptimization on its own.
+
+So,we have a diff API called Sparked DatFrames
+Spark DataFrams--distributed collec ofsemi-structured or structured data.This is similar to tables
+in reational dbs and python/R data frames.
+High levelops like aggregating,filtering,sorting,etc can be applied, Simpler queries,Optimized--this is done using
+catalyst optimizer.
+Support formultiple formats and sourceslike XML,JSON,HIve,MySQL,more
+
+folder 7--
+7.2create dataframes.ipynb----
+here create a session obj instead of a spark context object whenever u run a spark applicaion because 
+spark session includes all the necessary objects.
+
+Basic Ops on DFs--- 
+
+Basic Operations in Spark DataFrames.ipynb
+Creating cols in SparkDatFrames.ipynb
+Manipulating records in Spark DFs.ipynb
+
+Understanding Spark Execution--
+
+jobs,stages and tasks---
+How spark executes code internally.this will helpu to write spark app that will utilize optimum resources
+and complete your task in the least possible time.So basially we will seee what happens when we run a spark prog.
+
+Spark driver converts ur spark aopp into a single job.
+But Sparkjob is also a combination of a series of stages combined together.
+So what are these stages--Whenever spark needs to shuffle data,over  the n/w ,then a ob is broken down into multiplesatges.
+for eg for reduceByKey() ops--
+rdd1->map()rdd2->filter() rdd->reduceByKey()-->rdd4--->action
+till rdd3-stage1,rdd4 is stage2
+stage 1 consist of all the RDDs that are computed from the parent RDD without any shuffling of data.
+across the n/w.This seq processing of RDDs in a single stage is called pipeline.This makes computations much faster. 
+Now,RDD4 which is formed after data movement is part of stage 2.Tf spark stage isa group of tasks executed together.
+But waht are these tasks--
+Now,we know that RDD data is stored in diff partitions.lets say 2 partitions are there.
+Now,aspark worker node can have a single CPU core or multiple CPU cores but each core will prcess a single partition of
+data.This is called task- where task is a single unit of computation performed on asingle partition of data.
+It is performed on a singlecore of a worker node.So when u r computing a maptransformation or any other operation,
+spark is actually executing a task on apartition of data.
+Since we have 2 partitions of data,tf,we have 2 tasks here.
+Each of them is computing same ops on adiff core ofthe worker node.
+
+So,just to recap--a spark job is created by a driver prog tahen an action is called.This job is then divided intostages
+depending on whether ther's shuffling of data or not and finally each stage is divided into a groupof tasks where each task
+executes the same transformation on a diff partiion of data.
+
+8.2 jobs,stages and tasks.ipynb---
+
+Lineage--how spark keepstrackof ops applied on rdds and dfs.Weknow rdds areimmutable.
+So,if we apply opson rdds,like map(),flatmap(),and so on..it willcreate new rdds.
+Now,if afailure occurs on a node, and spark fails to compute the rdd,
+then since rddds are dependent on their parent rdd, spark will look intothe dependency and recompute the rdd.
+This dependency is maintained with the helpof a lineage. 
+When performing ops on RDDs ,we know that theresult is lazily computed.
+this allows spark to record a lineage or a logical plan of all the ops that are applied on the rdds.
+This allows to maintain a record of the dependencies of rdds and how they are created.
+So that if a failure occurs and sparkis not able to compute an rdd,it would take adv of the immutability of
+the rdds and utilize the logical execution plan for the lineage to recompute the rdd.Thus making it fault tolerant.
+Tf, lineage is not a physical execution plan. It doesnot divide jobs into satges,it doesnot pipeline tasks into stages.
+It only keeps the track of all the transformamtions on the rdds.
+Lineage is only a logical execution palan and not a physical one.DAG is a physical execution plan.Vertices indicates RDDs and edges represent transformations.It is created from a lineage.It is created after an action is called on the rdd.It is created by the spark DAG scheduler which is a high level scheduling layer.Its actually the DAG that divides the spark job into multiple stages and also pipeline tasks into stages.
+
+For eg stage 1 comprising of parallelize ->map ---->stage 2--->reduce by key--->map
+
+dag.ipynb------
+
+Now, how they all fit into execution plan?--1st u create RDD objects and Spark creates a lineage accordingly--then the daga scheduler creates the dag by breaking down the jobs in satges and pipelining the sequential tasks in two satges.--->next the dag scheduler sends the task to the dag scheduler which is responsible for sending them to the cluster manager.And finally the cluster manager executes these tasks on the worker node executers and returns the status whether its successful or not.
+ 
+Advanced programming in Spark--
+
+Shared Variables--
+2 kinds of shared variables are broadcast variables and accumulators.
+Broadcast variable allows the programmer to keep a read-only variable cached on each node rather tahn shipping a copy of it with tasks.They can be used for eg, to give every node a copy of a large i/p dataset in an efficient manner.Spark also attempts to distribute broadcast variable using efficient broadcast algos to reduce communication cost.
+
+driver(sc,broadcast(m))----read only variable cashed into a cluster , in order to access or use by other tasks.----worker node1(m--executor(task1,task2...))
+-------worker node2(m--executor(task1,task2...))..etc
+
+the broadcast method takes the arg that u wantn to broadcast. i.e.
+my_list=["India","AAustralia","Italy"]
+bv=sc.broadcast(my_list)
+
+When to use broadcast variable--
+when tasks across multiple stages need the same data. When caching the data in deserialized form is imp.
+
+Accumulators--Mostly for aggregate functions.These are only created through an associative or a commutative operation. Can be used to implement counters or sums.Spark natively supports accumulators of numeric types and programmers can add support for new types.
+
+eg --u have initialized an acc with the name count and we've initialized it with value 0. i.e. driver process(accumulator:count=0)---->now logs data is partitioned on multiple nodes and we need to find how many errors and warning megs are there in the data--->i.e.--executor1--->errors and warnings in logs data (count=1)
+So, on each partiotn it calc the result and values of diff driver prog.lly from each of the parttions the no. of errors and warnings are calc and send back to the driver prog where the value of the acc will be updated. Each executor will update the acc in isolation and once all the partitions will send the result----->(driver process(accumulator count:1))--->only the driver prog will be able to read the acc value.
+How to create acc in pyspark--
+num=sc.accumulator(10)
+def f(x):--------------------> func tha will execute on each executor
+  global num
+  num+=x
+rdd=sc.parallelize([20,30,40,50])
+rdd.foreach(f)--------foreach func
+final=num.value-------driver prog can read the acc value attribute.
+
+9.2--implementing_shared_variables.ipynb--
+
+Shuffling--
+A shuffle occurs when data is rearranged between partiitons.This is required when a transformation requires infor from other partitions such as finding distinct values ,adjoining data. Spark gathers required data from each parttionn and combine it into a new parttion likely on a diff executor.Now, if u have alot of data to be shuffled across the partitions then would result in latency.
+Latency Matrix(humaniozed)
+
+http://norvig.com/21-days.html#answers
+
+https://gist.github.com/hellerbarde/2843375
+
+Accr to latency matrix--In a shared memory envir  time it takes to read data from l1 cache is 0.5 secs. L2 cashe-7 secs. Mutex lock/unlock--25secs. Minutes--main memory ref--1m40secs.
+Now in a distributed envir--it takes 5.8 days for a round trip within same datacenter and 4.8 years when packet is sent from CA->netherlands->CA.
+Hence, we dont wnat to be sending all our data over the n/w if its not absolutely required.Too much n/w comm kills performance.
+
+Do reduce this time latency--what we can do?--
+may be we dont need to send all the data over the n/w,or we can reduce before we shuffle,or this could greatly reduce the amount of data to be sent over the n/w . Aggregating data before shuffling is known as Map Side Reduction.
+
+Map Side Shuffling--
+rather tahn passing all the data,combining data is preferred before shuffling.So it reduces the data before shuffle because data is aggregated before shuffling.
+for eg in reduce by key-- data is aggregated within parttion and hence there is less data to shuffle.Then with the reduce by key,data is combined so each partition o/ps at most 1 value for each key to send over the n/w. 
+
+Diff types of partitions are narrow transformations 1 to 1 and wide transformations(shuffles) 1 to N
+
+we know that each child rdd is connected to its parent rdd and any transformation done on an rdd results in a new rdd because rdds are immutable.So, any transf applied on an rdd results in a same no. of partitions in the child rdd then this is called the narrow dependency,where each partition of the parent rdd contributes to only 1 partition of the child rdd.Spark will perform these transformations in memory as ther is no shuffling required as the data on 1 partition doesnot depend on the data from another partiiton.Or we can say that narrow dependency is a 1:1 realtionship between the parent and the child rdd, pipelined as all the transf that performs sequentially in memory without shuffling and it is fast as no shuffling happens.
+Wide dependency is where each partition of the parent rdd contributes to the many partitions of the child rdd.Spark will have to move data across partitions over the n/w and it is because of this shuffling, wide transfor are slow.
+eg of narrow transf--map,flatmap,filter,uniion
+wide transf eg- groupbykey,reducebykey,intersection,distinct
+
+u can check for-sample,intersection,join,sort,cartesian,repartition,cogroup,foldByKey,combineByKey--and see which is which.
+
+Partitioning--
+To distribute work across the cluster and reduce the memory requirements of each node,spark splits data into smaller parts called partitions. Each of these is then sent to an executor to be processed.Only one partition is computed per executor thread at a time tf, the size and quantity of partitions passed to an executor is directly proportional to the time it takes to complete
+
+It's properties-- partitions never span on multiple nodes. i.e. tuples in the same partition are guaranteed to be in the same partition.2. Each node in the cluster contains at least 1 or more opartitions.3. the no. of partitions is configurable.By default,it equals total no. of cores on all available executor nodes.
+
+Kinds of partitioning available in spark are--
+1. HAsh prtiotioning and range partitioning.
+Customization is only available on paired rdd.
+
+Hash partitioning attempts to spread the data evenly across various partitions based on the key.The hashcode method is usd to determine the partition in spark as -
+partition=key.hashCode()%numPartitions
+hashcode() is a java integer class method which returns the hash code for the given i/ps.
+eg=sc.parallelize([(0,u'D'),(0,u'D'),(1,u'E'),(2,u'F')])
+eg.groupByKey()
+Here , the same key goes to the same partitions hosting the key. Hash partitioner tries to spread data evenly across the cluster based on the key.
+2 issues with hash partitioner are--1. data skew--
+consider a paired rdd with keys [8,96,240,400,401,800] and a desired no. of partitions 4. In this case hash partitioning distributes as follows amongs the partitions--
+partition 0:[8,96,240,400,800]
+partition 1:[401]
+partition 2:
+partition 3:
+here partition 0 is 5 times larger tha 1 and so it will take approx 5 times as long to compute , as th enext stage cannot begin as all the partitions are evaluated, the overall results on the stage will be delayed.The result will be very unbalanced distribution of keys which can hurt performance.
+Scheduling-- the other prob htat may occur when splitting into partitions is that there are too few partitions to correctly cover the no. of executors available.
+
+Range Partitioning--
+this algo divides the dataset into multiple partitions of consecutive and not overlapping range of values.It helps u group similar items inside the same place.eg if we partition data on age, we could suppose that the users of the same age will like similar type of music,will have similar professional responsibilities and so forth.
+SO using this we can improve performance significantly.
+Assumptions--(a)keys are non -ve. (b)800 is the biggest key in the rdd.
+set of ranges:[1,200],[201,400],[401,600],[601,800]--in this case range partitioner distributes the keys as below in partitions--
+partiotion 0:[8,96]
+1:[240,400]
+2:[401]
+3:[800]
+and the resulting distribution of keys is much more balanced.
+
+Coalesce vs Repartition--
+Coalesce--it reduce the no. of data partitions only.No data shuffling happens.
+Suppose we have a data with 4 partitions-
+1-A,B,C,D--|
+2-e,f,g,h--|---coalesce down to 2 partitions--->merge the partiotns instead of shuffling|-->1-A,B,C,D,e,f,g,h
+3-i,j,k,l--|										|-->2-i,j,k,l,m,n,o,p
+4-m,n,o,p--|
+
+in case of repartition--we can both increase or decrease the existing partitions.Here the partitions are not merged but complete shuffling of data happens.
+consider the above 4 partioins with same data--->repartiton down to 2 patitions--->complete shuffling of data takes palce-->|5 a,e,i,m,c,g,k,o 
+ 															    |6 b,f,j,n,d,h,l,p
+
+
+When to use which one--
+if ur dataste is skewed - use repartition
+if u want more partitions- use repartition
+if u want to drastically reduce the no. of partitions(eg numPartitions=1): use repartitions
+if ur dataset is well balanced i.e. not skewed and u want fewer partitions , but not dramatically fewer use coalesce.
+
+Coalesce Vs Repartition--
+9.6.ipynb----
+https://spark.apache.org/docs/2.1.0/api/python/pyspark.sql.html#pyspark.sql.functions.spark_partition_id
+
+Spark SQL---
+Spark SQL API which is used for processing structured data.It contains info about sturcture of data annd computation being performed.SparkSQL uses internal optimizations using catalyst optimizer.
+A dataframe or dsl is a data abstraction or a domain specific lang working with structured and semi sturctured data.A DSL is a specialized prog lang that is used for a single purpose.Some egs of DSL are SQL which is used for data querying and manipulation,HTML for web app development and CSS used for styles on web pages.It connects to the hive metastore and tables ,hql and offers an interactive spark sql shell.The df api is a distributed collection of data organized into named cols.It is equivalent to a relational table in sql. The datatsource api is a universal api for loading and storing sturctured data.It can read data from sources like- csv,json,jdbc,parquet,exteranl sources.
+Spark SQL has its applications in almost every sector.
+banking-credit card fraud detection, real time stock market analysis,genomic sequencing, and more
+Features of Spark Sql--
+Integrated--u can logically amke sql queries with spark progs.
+Hive compatability--while working with hive tables u can use spark sql.
+Performance and sclability--this incorporates catalyst optimizer.
+Standard Connectivity--we can conneact this api through jdbc or odbc to external sources.
+Unified data access-to hive,avro,orc,json and jdbc.
+
+Catalyst Optimizer--Spark sql use catalyst optimizer to internally optimize queries.
+It is a library within spark sql api.It optimizes sql queries as well as df code. It consists of 4 stages- analysis,logical optimization,physical planning,code generation.
+
+Analysis phase--
+sql query or df-->unresolved logical plan is generated for the sql query(this pakn is unresolved because spark doesnt know whether the tables and cols that we have referred to in our query really exist or not.)---->this plan is then resolved using the catalog,(a programatic interface to spark sql that holds a list of cols, datatypes,funcs,tables,databases,etc)---->finally the unresolved paln is converted into the logical plan.
+Logical optimization Phase--
+the logical plan is then optimized by applying rule based optimization. AN eg of rule based optimization would be predicate push down.It filters data right at the data source,there by reducing the no. of records that are retireved.This generally happens when we filter data using a where clause in sql.This helps us to convert the user expression into the most optimized version.
+then comes physical planning stage---
+NOw, spark sql takes optimized logical plans and generate 1 or more physical plans.It uses cost based optimizer to optimize these plans and based on their cost.selects the best physiacl plan.
+Then comes code generation---
+Finally the java byte code is generated to run on m/cs.Byte code is a prog that has been compiled from the source code into low level code designed for a s/w interpreter.
+
+explain func with paramater extended--explain(extended)--gives this.
+https://www.databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html
+
+How to run spark sql queries--using spark sql cli.Other way using programming sql interface.
+
+Implementation using SQL commands.ipynb---
+
+Why do we need spark sql?--
+It was built to overcome the limitations of apache hive running on top of apache spark.It provides an easy prog interface for non programmers.
+limitations of hive are-- hive uses map reduce which lags in performance with medium and small sized datasets i.e. with size less than 200 gb.
+Hive cannot drop encrypted databases.for eg we have a customer who has various databses in his hive warehouse.Each of htese databases is under a diff encryption zone.The encryption zone in hdfs are locations where all data within that location and its subdirectories is encrypted.Spark sql has many advs over apache hive.eg faster execution.No migration hurdles.realtime querying where as hive uses batch processing.Spark sql uses meta store service of hive to query data stored and managed by hive.
+
+Spark ML--
+Introduction to ML--
+
+https://www.databricks.com/session/dask-and-apache-spark
+https://docs.dask.org/en/latest/spark.html
+
+ML in Spark--we will work with ml api in spark.
+libraries like numpy pandas sklearn are intended to be used on a single m/c.u will not  be able to handle big data in a distributed manner using these libraries. We have another library called dask which is python based and integrates with these libraries.It lets us perform computations in a distributed manner.Then why spark ML-- the working of both DASK and SparkML is diff.Dask is good for local to lighter weight cloud computing, Spark on the other hand is al in one framework which provides u with the flexibility of working with various langs.It would be a good choice for working with sql like queies for analysis task because it comes along with its optimization task.Spark is designed for working with distributed envi.Tf, u will be able to work with ease in a distributed envir.It has built-in ml algos. Optimization,Compatible with sql like queries,ease of use are few reasons.
+2 ML libraries in spark are--
+Spark MLib and Spark ML
+Spark MLib--RDD based,provides algos for regression classfication, clustering and collaborative filtering tasks, and it also provides various statistical tools.
+Although this api has capabilities to handle all the ML tasks, it is replaced by Spark ML API.
+Spark ML  is dataframe based which provides capabilites to capitalize on spark's optimization.And also there are ML pipelines which can be used to represent ML work flow,
+there by making it easier to learn sequence of processes which are a common scene in ML projects.
+So we will use Spark ML- as it is more user friendly.It provides ML pipelines and new features will be created for this only.The RDD based API is not deprecated but is in maintenance mode.The RDD based API will not add any new features.
+
+Life cycle of a ML project--
+problem def--understanding the business vision,be as specific as possible, we should be clear with the evaluation metrics as it is used to improve ML model.
+Data Exploration--missing values treatment,visualization,outlier detection
+Data Transformation-- encode categorical variables,normalization,Scaling
+model training--
+model evaluation--
+model tuning--experiment with diff values of the training parameters of the model and try to improve score creating a ML project.
+
+Understanding Problem stmt--
+Click prediction Dataset--
+An advertising company delivers more than 3 billion clicks per month to its advertisers. It buys space on the publishers site and then shows an advertisement about the advertiser at that space. The advertiser pays the company for every conversion from the clicks. The company wants to leverage the ML to improve the conversions for its clients.
+
+id-unique id of click
+country=country code
+carrier-wireless n/w operator code
+traffictype-whether the ad is for adults or mainstream
+ClickDate-date at which the ad was clicked
+browser-type of browser from which ad was clicked
+os-type of os
+publisherID-unique id of publisher
+advertiserCampaignID-uniqueID of campaign of ad
+Fraud- If the click was fraud or not 
+ConversionStatus-if cust clicked on ad or not(target)
+
+Data exploration-univariate analysis,bivariate analysis,null values
+
+preprocessing--drop cols,fill null values,reduce categories within categorical cols,feature eng
+
+Model building--
+logistic reg and decision tree classifier
+
+nodel tuning - cross validation to train our model, grid search cv to train our model with diff values of the hyper parameter.
+
+StringIndexer for label encoding
+
+One hot encoding--here 1 col will be created. Spark stores its data in a sparse vector.Where a vector is like an array. It can store any value like integers floats boolean or even another vector.And hense it only keeps track of the non zero values in the vector. tf, the resul (2,[1],[1.0]) or (2,[0],[1.0]) is in sparse format. 2 represents size of vector, 2nd value is an array represents the indices where there  is a non zero value in the vecto, and the last value which is again ana arrayrepresents the non zero value stored at the represented index in the vector.now 1 is for grade A and 0 for grade B category.NOw even though we have 3 categories -grade A,B and C the size of the vector is only 2.i.e.(2,[],[]). This is because of the dummy variable trap.1he in spark stores values for only N minus 1 categories.Value for 1 category is not stored ,this is to avoid the dummy variable trap.
+So whenevr the 3rd category is missing, it represents the +nce of the 3rd variable.
+
+https://www.analyticsvidhya.com/blog/2020/08/types-of-categorical-data-encoding/
+
+click_prediction.ipynb----
+
+VectorAssembler--combines a given list of cols into a single vector cols.It can store any value like int,float,boolean or even another vectorIf u want to train ur ml model in spark, then u cannot train the model directly on the data.U would furst have to create the vector feature with all the cols that u want to train ur model on. This is done using vector assembler. i.e. eg--[1,28.7,77.1,7.5]-->then u can i/p this vector feature to the model for training.So to summarize, the vector assembler combines the given feature cols into a single vector col.
+
+Hold out validatin--dataset is divide into 3 parts-- training to train the model, validation to evaluate the train model,testing for which the result has to be predicted using the model.
+Issue with this is the model is missing out on a significant chunk of data to train upon.
+To overcome this we use k-fold cross validation.Here having seperate training and validation set,we have a single training dataset that encompasses the validation set as well.It shuffles the data randomly, then divide the training data into k equal groups.Then it takes all but 1 set as a training set for training the model and remaining set acts as the validation set and is used to evaluate the train model.And this procedure is carried out with all the case sets.This was model doesnot loose any info to train on and also avoid overfitting on data.
+
+Hyperparameter tuning--hyperparameters are the values defined for a model before the learning process.For selecting hyperparameters we use grid search cv.It tries all the possible combinations of these hyperparameters, build a model for each combination and then return the one that provides the best result.So we donot have to manually go over the entire combinations of hyperparameters and compare the results.
+
+ML pipelines--
+read the dataset-->missing value treatment-->dropping cols that are not required-->encode categorical variable-->feature creation--->model building
+these are alot of steps--When the new data comes -- these steps are repeated again. So we need something to automatre these steps where  we feed the data , get the results and all the in between steps are executed automatically.This automation of ml workflow is known as ML pipeline.2 main components of ML pipelines are - transformers and estimators.
+Transformer converts 1 df into another.eg if u create a transformer to map values into cols then this transformer will create another df with mapped values in ti.In spark, each transformer should have a transform func.We can also create custom transformer.
+
+Estimate--it predicts a new value using some input data.Each estimator has a fit func in them.like encoding categorical variable, mlodel building part are estimator.
+
+
+
+
+dataset folder for click prediction will try to check if gets uploded in github.
